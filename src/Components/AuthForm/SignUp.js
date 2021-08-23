@@ -26,6 +26,12 @@ const SignUp = () => {
         }
     }
 
+    const toggleSignIn = () => {
+        dispatch({
+            type: "TOGGLEIN"
+        })
+    }
+
     async function handleSubmit(e){
         e.preventDefault();
         if (inputs.current[1].value !== inputs.current[2].value){
@@ -33,9 +39,7 @@ const SignUp = () => {
             return;
         }
         await signup(inputs.current[0].value, inputs.current[1].value);
-        dispatch({
-            type:'CLOSEMODAL'
-        });
+        closeModal();
         history.push('/loggedHome');
     }
 
@@ -57,11 +61,11 @@ const SignUp = () => {
                     {error}
                     <button className="btn-sign">S'inscrire'</button>
                 </form>
-                <button className="btn-close">X</button>
+                <button onClick={closeModal} className="btn-close">X</button>
                 <p
-                    onClick={closeModal}
+                    onClick={toggleSignIn}
                     className="bottom-help-txt">
-                    Besoin de créer un compte ?
+                    Besoin de de connecter ?
                 </p>
             </div>
 
